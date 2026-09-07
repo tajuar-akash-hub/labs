@@ -477,7 +477,7 @@ You've just:
 - ✅ Started a **Feast feature server** reachable via HTTP
 - ✅ Learned how volumes **persist state** across restarts
 
-You now have a **reproducible, portable Feast setup** that you can run on any machine with Docker — no more "works on my laptop" issues.
+You now have a **reproducible, portable Feast setup** that you can run on any machine with Docker - no more "works on my laptop" issues.
 
 ---
 
