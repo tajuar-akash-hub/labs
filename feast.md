@@ -33,24 +33,9 @@ Docker lets you package an app together with everything it needs (Python, librar
 
 ---
 
-## What we are building
 
-```
-Your computer
- └── Docker
-      └── feast container
-           ├── Python
-           ├── Feast
-           ├── features.py
-           ├── feature_store.yaml
-           └── data folder (shared with your computer)
-```
 
-Only one container. SQLite lives inside it as a file.
-
----
-
-## ✅ Prerequisites
+##  Prerequisites
 
 Check your environment:
 
@@ -68,7 +53,7 @@ Docker Compose version v2.x.x
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 Create this folder layout:
 
@@ -398,86 +383,22 @@ Expected response (JSON):
 
 ---
 
-## Step 12 — Start the Feast UI (Optional)
-
-```bash
-docker compose exec feast feast ui --host 0.0.0.0 --port 8888
-```
-
-Open `http://localhost:8888` in your browser to browse features visually.
-
----
-
-## Step 13 — Persist Data Across Restarts
-
-The `volumes:` section in `compose.yaml` ensures the `data/` folder is mounted. To verify:
-
-```bash
-ls -la data/
-```
-
-You should see:
-```
-registry.db
-driver_stats.parquet
-```
-
-Stop and restart:
-```bash
-docker compose down
-docker compose up -d
-docker compose exec feast feast entities list
-```
-
-Your features should still be registered — the registry survived the restart.
-
----
-
-## Step 14 — Clean Up
-
-Stop containers but keep data:
-```bash
-docker compose down
-```
-
-Stop + remove everything (including volumes):
-```bash
-docker compose down -v
-docker image prune -f
-```
-
----
 
 
 
-## 🐞 Common Errors & Fixes
 
-| Error | Cause | Fix |
-|---|---|---|
-| `Cannot connect to redis:6379` | Redis not ready yet | Add `depends_on` with `condition: service_healthy` |
-| `No changes to registry` | Already applied | Harmless — proceed |
-| `ModuleNotFoundError: feast` | Forgot to `pip install feast[redis]` in Dockerfile | Rebuild image |
-| `Port 6566 already in use` | Another app using the port | Change port mapping: `"6567:6566"` |
-| `Permission denied on data/` | Files owned by root inside container | Add `user: "1000:1000"` to compose service |
-
----
-
-
-
----
-
-## ✅ Conclusion
+##  Conclusion
 
 You've just:
 
-- ✅ Containerized a **complete Feast stack** with Redis
-- ✅ Built a **custom Docker image** for Feast
-- ✅ Used **Docker Compose** to orchestrate services
-- ✅ Ran **feast apply** + materialization + online retrieval inside a container
-- ✅ Started a **Feast feature server** reachable via HTTP
-- ✅ Learned how volumes **persist state** across restarts
+-  Containerized a **complete Feast stack** with Redis
+-  Built a **custom Docker image** for Feast
+-  Used **Docker Compose** to orchestrate services
+-  Ran **feast apply** + materialization + online retrieval inside a container
+-  Started a **Feast feature server** reachable via HTTP
+-  Learned how volumes **persist state** across restarts
 
-You now have a **reproducible, portable Feast setup** that you can run on any machine with Docker - no more "works on my laptop" issues.
+
 
 ---
 
