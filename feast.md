@@ -1,4 +1,4 @@
-# Dockerizing Feast — Hands-On Lab
+# Dockerizing Feast (Hands-On Lab)
 ---
 
 ## Goal
